@@ -85,6 +85,27 @@
       "id": "ca0d9cbf-48c6-4b4e-8df7-1004807a2664",
       "createdAt": "5/8/2022, 3:34:37 PM",
       "updatedAt": "5/8/2022, 3:34:37 PM"
+    },
+    {
+      "name": "Core Buster 2",
+      "equipment": [
+        "rack",
+        "barbell",
+        "abmat"
+      ],
+      "exercises": [
+        "15 toes to bars",
+        "10 thrusters",
+        "30 abmat sit-ups"
+      ],
+      "trainerTips": [
+        "Split your toes to bars into two sets maximum",
+        "Go unbroken on the thrusters",
+        "Take the abmat sit-ups as a chance to normalize your breath"
+      ],
+      "id": "949161d9-352f-4742-8634-03cb87b11896",
+      "createdAt": "5/8/2022, 4:03:06 PM",
+      "updatedAt": "5/8/2022, 4:03:06 PM"
     }
   ]
 }
