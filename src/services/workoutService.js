@@ -1,4 +1,7 @@
+const { v4: uuid } = require("uuid");
+
 const workout = require("../database/workout");
+
 
 const getAllWorkouts = () => {
     const allWorkouts = workout.getAllWorkouts();
@@ -9,9 +12,16 @@ const getOneWorkout = () => {
     return;
 };
 
-const createNewWorkout = () => {
-    return;
-};
+const createNewWorkout = (newWorkout) => {
+    const workoutToInsert = {
+        ...newWorkout,
+        id: uuid(),
+        createdAt: new Date().toLocaleString("en-us", { timeZone: "UTC" }),
+        updatedAt: new Date().toLocaleString("en-us", { timeZone: "UTC" })
+    };
+    const createdWorkout= workout.createNewWorkout(workoutToInsert);
+    return createdWorkout;
+};  
 
 const updateOneWorkout = () => {
     return;
