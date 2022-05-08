@@ -14,6 +14,7 @@ const getOneWorkout = (req, res) => {
     const {
         params: { workoutId },
     } = req;
+    
     if (!workoutId) {
         return res.status(400).send({
             status: "FAILED",
