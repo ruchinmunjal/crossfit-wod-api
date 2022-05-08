@@ -1,22 +1,21 @@
 const db = require("./db.json");
 
 const getRecordForWorkout = (workoutId) => {
-    try {
-        const record = db.records.filter(
-            (record) => record.workout == workoutId
-        );
-        if (!record) {
-            throw {
-                status: 400,
-                message: `Can't find workout with id '${workoutId}'`
-            };
-        }
-        return record;
-    } catch (error) {
-        throw {
-            status: error?.status || 500, message: error?.message || error
-        };
+  try {
+    const record = db.records.filter((record) => record.workout == workoutId);
+    if (!record) {
+      throw {
+        status: 400,
+        message: `Can't find workout with id '${workoutId}'`,
+      };
     }
+    return record;
+  } catch (error) {
+    throw {
+      status: error?.status || 500,
+      message: error?.message || error,
+    };
+  }
 };
 
 module.exports = { getRecordForWorkout };

@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", wc.getAllWorkouts);
 router.get("/:workoutId", wc.getOneWorkout);
-router.get("/:workoutId/records",rc.getRecordForWorkout);
+router.get("/:workoutId/records", rc.getRecordForWorkout);
 
 router.post("/", wc.createNewWorkout);
 
