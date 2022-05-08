@@ -45,10 +45,14 @@ const updateOneWorkout = (workoutId, changes) => {
         ...changes,
         updatedAt: new Date().toLocaleString("en-us", { timeZone: "UTC" })
     };
+    try {
+        db.workouts[indexForUpdate] = updatedWorkout;
+        saveToDatabase(db);
+        return updatedWorkout;
+    } catch (error) {
+        throw { status: 500, message: error?.message || error };
+    }
 
-    db.workouts[indexForUpdate] = updatedWorkout;
-    saveToDatabase(db);
-    return updatedWorkout;
 };
 
 const deleteOneWorkout = (workoutId) => {
@@ -60,8 +64,12 @@ const deleteOneWorkout = (workoutId) => {
         return;
     }
 
-    db.workouts.splice(indexForDeletion, 1);
-    saveToDatabase(db);
+    try {
+        db.workouts.splice(indexForDeletion, 1);
+        saveToDatabase(db);
+    } catch (error) {
+        throw { status: 500, message: error?.message || error };
+    }
 
 };
 

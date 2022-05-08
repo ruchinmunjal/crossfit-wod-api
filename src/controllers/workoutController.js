@@ -1,8 +1,13 @@
 const service = require("../services/workoutService");
 
 const getAllWorkouts = (req, res) => {
-    const allWorkouts = service.getAllWorkouts();
-    res.send({ status: "OK", data: allWorkouts });
+    try {
+        const allWorkouts = service.getAllWorkouts();
+        res.send({ status: "OK", data: allWorkouts });
+    } catch (error) {
+        res.status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } });
+    }
 };
 
 const getOneWorkout = (req, res) => {
@@ -13,12 +18,16 @@ const getOneWorkout = (req, res) => {
         return res.status(400).send({
             status: "FAILED",
             data: { error: "Parameter ':workoutId' can not be empty" },
-          });
+        });
     }
 
-    const workout = service.getOneWorkout(workoutId);
-
-    res.send({ status: "OK", data: workout });
+    try {
+        const workout = service.getOneWorkout(workoutId);
+        res.send({ status: "OK", data: workout });
+    } catch (error) {
+        res.status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } });
+    }
 };
 
 const createNewWorkout = (req, res) => {
@@ -57,8 +66,13 @@ const updateOneWorkout = (req, res) => {
         return res.status(400).send("Bad request");
     }
 
-    const updateWorkout = service.updateOneWorkout(workoutId, body);
-    res.send({ status: "OK", data: updatedWorkout });
+    try {
+        const updateWorkout = service.updateOneWorkout(workoutId, body);
+        res.send({ status: "OK", data: updatedWorkout });
+    } catch (error) {
+        res.status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } });
+    }
 };
 
 
@@ -69,8 +83,13 @@ const deleteOneWorkout = (req, res) => {
     if (!workoutId) {
         res.status(400).send("Bad Request");
     }
-    service.deleteOneWorkouts(workoutId);
-    res.status(204).send({ status: "OK" });
+    try {
+        service.deleteOneWorkouts(workoutId);
+        res.status(204).send({ status: "OK" });
+    } catch (error) {
+        res.status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } });
+    }
 };
 
 module.exports = {
